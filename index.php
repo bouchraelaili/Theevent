@@ -1,16 +1,19 @@
-<?php
-$title = '<h1 class="mb-4 pb-0">The Annual<br><span>Marketing</span> Conference</h1>';
-$date = '<p name="date" class="mb-4 pb-0">10-12 December, Downtown Conference Center, New York</p>';
-$texte ='About The Event';
-$nom = array("Brenden Legros","Hubert Hirthe","Cole Emmerich","Jack Christiansen","Alejandrin Littel","Willow Trantow");
-$role = array("","","","","","");
+<?php 
+    $titre = 'The Annual<br><span>Marketing</span> Conference';
+    $date = '10-12 December';
+    $lieu = 'Downtown Conference Center, New York';
+    $about = 'About The Event';
+    $speakers = array("Brenden Legros","Hubert Hirthe","Cole Emmerich","Jack Christiansen","Alejandrin Littel","Willow Trantow");
+    $a = array("Quas alias incidunt","Consequuntur odio aut","Fugiat laborum et","Debitis iure vero","Qui molestiae natus","Non autem dicta");
+    $T = array("Home"=>"#intro", "About"=>"#about", "Speakers"=>"#speakers", "Schedule"=>"#schedule", "Venue"=>"#venue", "Hotels"=>"#hotels", "Gallery"=>"#gallery", "Sponsors"=>"#supporters", "Contact"=>"#contact", "Buy Tickets"=>"#buy-tickets");
+    $tb = array_keys($T);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">  
+  <meta charset="utf-8">
   <title>TheEvent - Bootstrap Event Template</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
@@ -57,40 +60,51 @@ $role = array("","","","","","");
         <a href="#intro" class="scrollto"><img src="img/logo.png" alt="" title=""></a>
       </div>
 
+       
+     
+
+   
+
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="#intro">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#speakers">Speakers</a></li>
-          <li><a href="#schedule">Schedule</a></li>
-          <li><a href="#venue">Venue</a></li>
-          <li><a href="#hotels">Hotels</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#supporters">Sponsors</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li class="buy-tickets"><a href="#buy-tickets">Buy Tickets</a></li>
+        
+      
+<?php 
+          for($i=0;$i<10;$i++){
+
+            if($i == 0) {
+               echo('<li class="menu-active"><a href="'.$T[$tb[$i]].'">'.$tb[$i].'</a></li>');
+               }
+
+            if($i == 9) {
+               echo('<li class="buy-tickets"><a href="'.$T[$tb[$i]].'">'.$tb[$i].'</a></li>');
+              }
+
+           if($i>0 && $i<9) {
+             echo('<li><a href="'.$T[$tb[$i]].'">'.$tb[$i].'</a></li>');
+            }
+
+
+
+        }
+        ?>
+
         </ul>
-      </nav><!-- #nav-menu-container -->
+      </nav>
     </div>
-  </header><!-- #header -->
+  </header>
 
   <!--==========================
     Intro Section
   ============================-->
-  
+ 
   <section id="intro">
     <div class="intro-container wow fadeIn">
-    <?php
-     echo  "$title" ;
-   
-     echo "$date";
-
-     
-      ?>
-      
+      <h1 class="mb-4 pb-0"><?php echo($titre)  ?></h1>
+      <p class="mb-4 pb-0"><?php echo("$date , $lieu") ?></p>
       <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video"
         data-autoplay="true"></a>
-      <a href="#about" class="about-btn scrollto"><?php echo $texte ?></a>
+      <a href="#about" class="about-btn scrollto"><?php echo($about) ?></a>
     </div>
   </section>
 
@@ -123,6 +137,9 @@ $role = array("","","","","","");
     <!--==========================
       Speakers Section
     ============================-->
+
+
+    
     <section id="speakers" class="wow fadeInUp">
       <div class="container">
         <div class="section-header">
@@ -131,97 +148,36 @@ $role = array("","","","","","");
         </div>
 
         <div class="row">
-          <div class="col-lg-4 col-md-6">
+
+        <?php 
+         for($i=0; $i< 6; $i++){
+          ?>
+         <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="img/speakers/1.jpg" alt="Speaker 1" class="img-fluid">
+              <img src="img/speakers/<?php echo($i+1) ?>.jpg" alt="Speaker 1" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html"><?php echo $nom[0]; ?></a></h3>
-                <p>Quas alias incidunt</p>
+                <h3><a href="speaker-details.html"><?php echo($speakers[$i]) ?></a></h3>
+                <p><?php echo($a[$i]) ?></p>
                 <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
+                <?php if($speakers[$i] == "Brenden Legros"){ ?>
+                  <a href="www.twitter.com/Brend"><i class="fa fa-twitter"></i></a>
+                <?php }else if($speakers[$i] == "Hubert Hirthe"){ ?>
+                  <a href="www.facebook.com/Hubert"><i class="fa fa-facebook"></i></a>
+                  <?php } ?>
+                  <?php if($speakers[$i] == "Cole Emmerich"){ ?>
+                  <a href="www.twitter.com/Cole"><i class="fa fa-twitter"></i></a>
+                <?php }else if($speakers[$i] == "Jack Christiansen"){ ?>
+                  <a href="www.facebook.com/Jack"><i class="fa fa-facebook"></i></a>
+                  <?php } ?>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="speaker">
-              <img src="img/speakers/2.jpg" alt="Speaker 2" class="img-fluid">
-              <div class="details">
-                <h3><a href="speaker-details.html"><?php echo $nom[1]; ?></a></h3>
-                <p>Consequuntur odio aut</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="speaker">
-              <img src="img/speakers/3.jpg" alt="Speaker 3" class="img-fluid">
-              <div class="details">
-                <h3><a href="speaker-details.html"><?php echo $nom[2]; ?></a></h3>
-                <p>Fugiat laborum et</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="speaker">
-              <img src="img/speakers/4.jpg" alt="Speaker 4" class="img-fluid">
-              <div class="details">
-                <h3><a href="speaker-details.html"><?php echo $nom[3]; ?></a></h3>
-                <p>Debitis iure vero</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="speaker">
-              <img src="img/speakers/5.jpg" alt="Speaker 5" class="img-fluid">
-              <div class="details">
-                <h3><a href="speaker-details.html"><?php echo $nom[4]; ?></a></h3>
-                <p>Qui molestiae natus</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="speaker">
-              <img src="img/speakers/6.jpg" alt="Speaker 6" class="img-fluid">
-              <div class="details">
-                <h3><a href="speaker-details.html"><?php echo $nom[5]; ?></a></h3>
-                <p>Non autem dicta</p>
-                <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      
+      <?php 
+       }
+          ?>
+         
       </div>
 
     </section>
@@ -596,56 +552,45 @@ $role = array("","","","","","");
         </div>
 
         <div class="row">
+       
+        <?php 
+          $img = array("img/hotels/1.jpg","img/hotels/2.jpg","img/hotels/3.jpg");
+          $b = array("0.4","0.5","0.6");
+
+          for($i=0;$i<3;$i++){
+        ?>
 
           <div class="col-lg-4 col-md-6">
             <div class="hotel">
               <div class="hotel-img">
-                <img src="img/hotels/1.jpg" alt="Hotel 1" class="img-fluid">
+                <img src="<?php echo($img[$i]) ?>" alt="Hotel 1" class="img-fluid">
               </div>
-              <h3><a href="#">Hotel 1</a></h3>
+              <h3><a href="#">Hotel <?php echo($i + 1) ?></a></h3>
               <div class="stars">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <p>0.4 Mile from the Venue</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="hotel">
-              <div class="hotel-img">
-                <img src="img/hotels/2.jpg" alt="Hotel 2" class="img-fluid">
-              </div>
-              <h3><a href="#">Hotel 2</a></h3>
-              <div class="stars">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
+                <?php 
+                if($i == 1){
+                ?>
                 <i class="fa fa-star-half-full"></i>
+                <?php 
+                }else {
+                ?>
+                <i class="fa fa-star"></i>
+
+
+<?php 
+                }
+                ?>
               </div>
-              <p>0.5 Mile from the Venue</p>
+              <p><?php echo($b[$i]) ?> Mile from the Venue</p>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6">
-            <div class="hotel">
-              <div class="hotel-img">
-                <img src="img/hotels/3.jpg" alt="Hotel 3" class="img-fluid">
-              </div>
-              <h3><a href="#">Hotel 3</a></h3>
-              <div class="stars">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <p>0.6 Mile from the Venue</p>
-            </div>
-          </div>
+          <?php } ?>
+         
 
         </div>
       </div>
